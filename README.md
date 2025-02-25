@@ -1,1 +1,3 @@
 # Milj-dataanalyseapplikasjon
+
+print("hei")
