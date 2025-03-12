@@ -1,6 +1,7 @@
 # Milj-dataanalyseapplikasjon
 
-print("hei")
+print("Hei")
+
 
 
 print("heihei")
