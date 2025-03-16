@@ -1,75 +1,9 @@
 [
     {
-        "tidspunkt": "2025-03-16T12:05:00Z",
-        "temperatur": 1.9,
-        "vindhastighet": 5.5,
-        "nedbor": 0.2
-    },
-    {
-        "tidspunkt": "2025-03-16T12:10:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:15:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:20:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:25:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:30:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:35:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:40:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:45:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:50:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
-        "tidspunkt": "2025-03-16T12:55:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
-    },
-    {
         "tidspunkt": "2025-03-16T13:00:00Z",
-        "temperatur": "Data mangler",
-        "vindhastighet": "Data mangler",
-        "nedbor": 0
+        "temperatur": 1.4,
+        "vindhastighet": 4.5,
+        "nedbor": 0.0
     },
     {
         "tidspunkt": "2025-03-16T13:05:00Z",
@@ -133,6 +67,72 @@
     },
     {
         "tidspunkt": "2025-03-16T13:55:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:00:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:05:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:10:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:15:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:20:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:25:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:30:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:35:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:40:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:45:00Z",
+        "temperatur": "Data mangler",
+        "vindhastighet": "Data mangler",
+        "nedbor": 0
+    },
+    {
+        "tidspunkt": "2025-03-16T14:50:00Z",
         "temperatur": "Data mangler",
         "vindhastighet": "Data mangler",
         "nedbor": 0
