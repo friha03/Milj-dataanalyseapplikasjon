@@ -16,7 +16,7 @@ class Test_Data(unittest.TestCase):
 
     def test_nan(self):
         df = pd.DataFrame({"vind" : [np.nan, 2, 4]})
-        df["vind"].fillna(df["vind"].mean(), inplace=True)
+        df["vind"] = df["vind"].fillna(df["vind"].mean())
         self.assertFalse(df["vind"].isnull().any())
         self.assertAlmostEqual(df["vind"].iloc[0], 3.0) #(2+4)/2 = 3.0
 
@@ -27,12 +27,13 @@ class Test_Data(unittest.TestCase):
         self.assertAlmostEqual(np.std(data), 1.414, places=3)
 
     def test_unormal_hopp_temp(self):
-        self.assertEqual(unormalt_hopp_temp(21), True)
-        self.assertFalse(unormalt_hopp_temp(5))
+        self.assertTrue(unormalt_hopp_temp(21), "For høyt hopp i temperatur, ikke logisk")
+        self.assertFalse(unormalt_hopp_temp(5), "OK")
+
     
     def test_kategoriserer_trykk(self):
-        self.assertEqual(kategoriserer_trykk(1018))#høtrykk
-        self.assertEqual(kategoriserer_trykk(1005))#lavtrykk
+         self.assertEqual(kategoriserer_trykk(1018), "Høytrykk") 
+         self.assertEqual(kategoriserer_trykk(1005), "Lavtrykk")
 
     def test_kategoriser_nedbør(self):
         self.assertEqual(kategoriserer_nedbor(0), "Tørt")
