@@ -1,16 +1,12 @@
-import unittest
-import pandas as pd
 import numpy as np
-
-
-def temperatur_kategori(temp): 
-    if temp < 10:
-        return "Kaldt"
-    elif temp < 20:
-        return "Mildt"
-    else: 
-        return "Varmt"
-    
+import pandas as pd
+import unittest
+from verdi_data import(
+    temperatur_kategori,
+    unormalt_hopp_temp,
+    kategoriserer_trykk,
+    kategoriserer_nedbor
+)
 
 class Test_Data(unittest.TestCase): 
     def test_Kategori(self): 
@@ -30,6 +26,32 @@ class Test_Data(unittest.TestCase):
         self.assertEqual(np.median(data), 3)
         self.assertAlmostEqual(np.std(data), 1.414, places=3)
 
+    def test_unormal_hopp_temp(self):
+        self.assertEqual(unormalt_hopp_temp(21), True)
+        self.assertFalse(unormalt_hopp_temp(5))
+    
+    def test_kategoriserer_trykk(self):
+        self.assertEqual(kategoriserer_trykk(1018))#høtrykk
+        self.assertEqual(kategoriserer_trykk(1005))#lavtrykk
+
+    def test_kategoriser_nedbør(self):
+        self.assertEqual(kategoriserer_nedbor(0), "Tørt")
+        self.assertEqual(kategoriserer_nedbor(3), "Våt luft")
+        self.assertEqual(kategoriserer_nedbor(12), "Mye regn")
+        self.assertEqual(kategoriserer_nedbor(25), "Ekstremvær")
+
+
+#Ekstra test for ekstremalverdier
+class TestEdgeTilfeller(unittest.TestCase):
+    def test_hopp_nan(self):
+        self.assertFalse(unormalt_hopp_temp(np.nan))
+    
+    def test_trykk_grensa(self):
+        self.assertEqual(kategoriserer_trykk(1013), "Lavtrykk") #tester for eksakte grensa
+    
+    def test_nedbor_grensa(self):
+        self.assertEqual(kategoriserer_nedbor(5), "Mye regn") #genrese mellom våt luft og mye regn
+        self.assertEqual(kategoriserer_nedbor(20), "Ekstremvær") #grense mellom mye regn og ekstramvær
+
 if __name__ == '__main__': 
     unittest.main()
-
