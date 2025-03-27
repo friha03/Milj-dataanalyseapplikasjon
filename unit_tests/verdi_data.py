@@ -15,7 +15,7 @@ def unormalt_hopp_temp(diff):
     return abs(diff)>20
 
 def kategoriserer_trykk(trykk): 
-    return "Høytrykk" if trykk> 1013 else "Lavtrykk"
+    return "Høytrykk" if trykk > 1013 else "Lavtrykk"
 
 def kategoriserer_nedbor(nedbor):
     if nedbor == 0:
