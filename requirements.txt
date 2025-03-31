@@ -1,8 +1,8 @@
 pandas
 requests
-pandas
 pandasql
 python-dotenv
 numpy 
 missingno
+matplotlib
 
