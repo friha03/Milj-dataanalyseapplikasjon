@@ -94,4 +94,22 @@ def plott_smart_scatter_3D(
     plt.show()
 
 
-
+def forenklet_plot_funksjon(
+    df,
+    x_col,
+    y_col,
+    subplot_index,
+    x_label,
+    y_label,
+    title, 
+    farge,
+    marker="o", 
+    linestyle="-",
+    xticks_rotation = 45
+):
+    plt.subplot(*subplot_index)
+    plt.plot(df['x_col'], df['y_col'], farge, marker=marker, linestyle=linestyle)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
+    plt.xticks(rotation = xticks_rotation)
