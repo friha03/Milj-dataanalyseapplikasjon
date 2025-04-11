@@ -30,8 +30,11 @@ def plott_smart_scatter(
 
     if text_labels_col:
         for i, row in df.iterrows():
-            plt.text(row[x_col], row[y_col], str(row[text_labels_col]), fontsize=9, ha="right", va="bottom")
+            plt.text(row[x_col], row[y_col], str(row[text_labels_col].strftime("%Y-%m-%d")), fontsize=9, ha="right", va="bottom")
 
     plt.tight_layout()
     plt.show()
+
+
+
 
