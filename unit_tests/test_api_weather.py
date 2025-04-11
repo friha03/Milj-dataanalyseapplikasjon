@@ -1,61 +1,59 @@
-import unittest
-from unittest.mock import patch, MagicMock
-from datetime import datetime
-import pandas as pd
-import sys
-import os
+import requests #HTTP kall
+import pandas as pd #lagre i dataframe
+from datetime import datetime, timedelta
+import os #miljøvariabler
+from dotenv import load_dotenv #laste env fila
 
-# Legg til riktig path til src
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+load_dotenv() #miljøvariabler blir lasta opp fra env fil
 
-# Importer funksjonen som skal testes
-from Api_weather import hente_data_fra_api
+api_key_1 = os.getenv('API_KEY_1') #API key
+base_URL = os.getenv('DATABASE_URL') #URL
 
+#feil om noko mangler
+if not api_key_1 or not base_URL:
+    raise ValueError("Databasen eller API key mangler i env fila")
 
-class TestHenteDataFraAPI(unittest.TestCase):
+#city er navnet på byen, pluss intervall for henting av dataen
+def hente_data_fra_api(city: str, start_date: datetime, end_date: datetime):
+    if start_date > end_date:
+        raise ValueError("Startdatoen må komme før sluttdato.")
 
-    @patch("Api_weather.requests.get")
-    def test_returnerer_dataframe(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "data": [
-                {
-                    "date": "2025-01-16",
-                    "temperature": 2.5,
-                    "pressure": 4.2,
-                    "precipitation": 0.0
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
+    vaerdata = [] #tom liste
 
-        df = hente_data_fra_api("Trondheim", datetime(2025, 1, 16), datetime(2025, 1, 17))
-        self.assertIsInstance(df, pd.DataFrame)
-        self.assertFalse(df.empty)
-        self.assertIn("temperature", df.columns)
+    current_date = start_date #start er dagens dato
+    while current_date <= end_date:
+        date_str = current_date.strftime("%Y-%m-%d") #dato til formatet år, måned dag
+        url = f"{base_URL}/history.json?key={api_key_1}&q={city}&dt={date_str}"
 
-    @patch("Api_weather.requests.get")
-    def test_tom_data(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {"data": []}
-        mock_get.return_value = mock_response
+        response = requests.get(url) #kaller på API
 
-        df = hente_data_fra_api("Trondheim", datetime(2025, 1, 16), datetime(2025, 1, 17))
-        self.assertIsInstance(df, pd.DataFrame)
-        self.assertTrue(df.empty)
+        if response.status_code != 200:
+            raise ValueError(f"Feil når vi skal hente data fra {date_str}: {response.status_code}")
 
-    @patch("Api_weather.requests.get")
-    def test_feilrespons(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 404
-        mock_response.json.return_value = {"error": "Not found"}
-        mock_get.return_value = mock_response
+        data = response.json() #svaret leses som en JSON
 
-        with self.assertRaises(ValueError):
-            hente_data_fra_api("Ugyldig", datetime(2025, 1, 16), datetime(2025, 1, 17))
+        # Sjekker om det er data for dagen
+        forecast_days = data.get("forecast", {}).get("forecastday", [])
+        if not forecast_days:
+            current_date += timedelta(days=1)
+            continue
 
+        for hour_data in forecast_days[0].get("hour", []):
+            tidspunkt = hour_data.get("time")
+            temperatur = hour_data.get("temp_c")
+            vindhastighet = hour_data.get("wind_kph")
+            pressure_mb = hour_data.get("pressure_mb")
+            nedbør = hour_data.get("precip_mm")
 
-if __name__ == '__main__':
-    unittest.main()
+            #lagrer på ei rad
+            vaerdata.append({
+                "Tidspunkt": tidspunkt,
+                "Temperatur (°C)": temperatur,
+                "Vindhastighet (km/t)": vindhastighet,
+                "Trykk": pressure_mb,
+                "Nedbør (mm)": nedbør
+            })
+
+        current_date += timedelta(days=1) #videre til ein ny dag
+
+    return pd.DataFrame(vaerdata)
