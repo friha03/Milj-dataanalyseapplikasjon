@@ -6,8 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 api_key_1 = os.getenv('API_KEY_1') #Gjør dette med enn .env fil
-print(api_key_1)
 base_URL = os.getenv('DATABASE_URL')
+
+
+if not api_key_1 or not base_URL:
+    raise ValueError ("DATABASE/APIKEY mangler i .env filen")
 
 def hente_data_fra_api(city: str, start_date: datetime, end_date: datetime):
     vaerdata = []
@@ -47,3 +50,4 @@ def hente_data_fra_api(city: str, start_date: datetime, end_date: datetime):
         df = pd.DataFrame(vaerdata)
         return df 
         
+    
