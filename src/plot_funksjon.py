@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
-def plott_smart_scatter(
+#2D plots
+def plott_smart_scatter_2D(
     df,
     x_col,
     y_col,
@@ -38,3 +39,56 @@ def plott_smart_scatter(
 
 
 
+#3D plots
+from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+
+def plott_smart_scatter_3D(
+    df,
+    x_col,
+    y_col,
+    z_col,
+    dato_col,
+    x_label,
+    y_label,
+    z_label,
+    title,
+    colorbar_label="Nedbør (mm)",
+    farge_kart="plasma",
+    prikk_str=120
+):
+    # Konverter dato
+    df[dato_col] = pd.to_datetime(df[dato_col])
+    labels = df[dato_col].dt.strftime("%Y-%m-%d")
+
+    # Verdier til plottet
+    x = df[x_col]
+    y = df[y_col]
+    z = df[z_col]
+
+    # Plottet
+    fig = plt.figure(figsize=(12, 8))
+    ax = fig.add_subplot(111, projection='3d')
+
+    scatter = ax.scatter(
+        x, y, z,
+        c=z,
+        cmap=farge_kart,
+        s=prikk_str,
+        edgecolors="black",
+        linewidths=0.7
+    )
+
+    # Legg til datomerking på punktene
+    for i in range(len(df)):
+        ax.text(x.iloc[i], y.iloc[i], z.iloc[i], labels.iloc[i], size=7, zorder=1)
+
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
+    ax.set_zlabel(z_label)
+    ax.set_title(title)
+
+    fig.colorbar(scatter, label=colorbar_label)
+
+    plt.tight_layout()
+    plt.show()
