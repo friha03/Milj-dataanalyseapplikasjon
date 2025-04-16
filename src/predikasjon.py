@@ -103,4 +103,50 @@ def prediker_for_aar(model, aar, skuddaar = False):
 
 
 #Predikasjon
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+def prediker_daglig_variable(
+    df,
+    variabel,
+    label,
+    prediksjonsår=2026,
+    farge="darkred",
+    plot=True
+):
+    #Gjør dag for dag lineær regresjon på gitt variabel og predikerer for et nytt år
+    prediksjoner = []
+
+    for day in range(1, 367):  # Inkluderer skuddårsdager
+        df_day = df[df['day_of_year'] == day]
+
+        if df_day['year'].nunique() < 2:
+            continue
+
+        X = df_day[['year']]
+        y = df_day[variabel]
+
+        model = LinearRegression()
+        model.fit(X, y)
+
+        pred = model.predict(pd.DataFrame({'year': [prediksjonsår]}))[0]
+        prediksjoner.append((day, pred))
+
+    df_pred = pd.DataFrame(prediksjoner, columns=['day_of_year', label])
+    df_pred['date'] = pd.to_datetime(f"{prediksjonsår}-01-01") + pd.to_timedelta(df_pred['day_of_year'] - 1, unit='D')
+
+    if plot:
+        plt.figure(figsize=(14, 5))
+        plt.plot(df_pred['date'], df_pred[label], 'o-', color=farge, label=label)
+        plt.title(f"Daglig predikert {label.lower()} for {prediksjonsår}")
+        plt.xlabel("Dato")
+        plt.ylabel(label)
+        plt.grid(True)
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
+
+    return df_pred
+
 
