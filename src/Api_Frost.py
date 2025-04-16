@@ -45,3 +45,39 @@ def frost_json_til_dataframe(json_data):
 def lagre_til_csv(df, filnavn):
     df.to_csv("trondheim_vaerdata_full.csv", index = False, encoding="utf-8")
     print("data lagret i trondheim_vaerdata_full.csv")
+
+
+
+
+
+#HÅNDTERING AV UREGELMESSIGHETER
+def rense_data(df):
+    
+    #værdata som kan være feilmålinger, som ekstreme temperaturer osv, plutselig hopp
+    #bort med usansynlige temperaturer
+    df = df[(df["mean(air_temperature P1D)"] > -50) & (df["mean(air_temperature P1D)"] < 50)]
+    #fjerner negative verdier for nedbør og ekstreme verdier
+    df  = df[(df["sum(precipitation_amount P1D)"]>=0) & (df["sum(precipitation_amount P1D)"]<100)]
+    #fjerner negative og ekstreme verdier
+    df = df[(df["mean(wind_speed P1D)"]> 0) & (df["mean(wind_speed P1D)"]< 45)]
+
+    #erstatter åpenbare feil med NaN
+    df.replace(-9999, None, inplace=True)
+
+    #temperaturhopp
+    df["TempDiff"] = df["mean(air_temperature P1D)"].diff() #beregn differansen mellom hver måling
+    df["UnormalHoppTemp"] = df["TempDiff"].apply(lambda x: "Ja" if abs(x) > 10 else "Nei") #Markerer plutselige endringer med Ja eller nei
+
+    #Trykkhopp
+    df["PressureDiff"] = df["mean(air_pressure_at_sea_level P1D)"].diff() #differanse mellom hver måling
+    df["UnormalHoppPressure"] = df["PressureDiff"].apply(lambda x: "Ja" if abs(x) > 100 else "Nei") #Markerer plutselige endringer
+
+    #vindhopp
+    df["Wind_speedDiff"] = df["mean(wind_speed P1D)"].diff()  #differanse mellom hver måling
+    df["UnormalHoppWind"] = df["Wind_speedDiff"].apply(lambda x: "Ja" if abs(x) > 10 else "Nei") #Markerer plutselige endringer
+
+    #nedbørhopp
+    df["NedborDiff"] = df["sum(precipitation_amount P1D)"].diff()  #differanse mellom hver måling
+    df["UnormalHoppNedbor"] = df["NedborDiff"].apply(lambda x: "Ja" if abs(x) > 10 else "Nei") #Markerer plutselige endringer
+
+    return df
