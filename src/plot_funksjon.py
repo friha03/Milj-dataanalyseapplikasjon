@@ -93,6 +93,41 @@ def plott_smart_scatter_3D(
     plt.tight_layout()
     plt.show()
 
+def opprett_liste_over_fire_subplots():
+    plot_configuration = [
+    { 
+        "y_col" : "Temperatur (°C)", 
+        "y_label" : "Temperatur (°C)", 
+        "title" : "Temperatur over tid",
+        "farge" : "blue", 
+        "subplot_index" : (2, 2, 1)
+    },
+    {   
+        "y_col" : "Vindhastighet (km/t)", 
+        "y_label" : "Vindhastighet (km/t)", 
+        "title" : "Vindhastighet over tid",
+        "farge" : "red", 
+        "subplot_index" : (2, 2, 2)
+    },
+    {
+        "y_col" : "Trykk", 
+        "y_label" : "Trykk (Pa)", 
+        "title" : "Trykk over tid",
+        "farge" : "green", 
+        "subplot_index" : (2, 2, 3)
+    },
+    {
+        "y_col" : "Nedbør (mm)", 
+        "y_label" : "Nedbør (mm)", 
+        "title" : "Nedbør over tid",
+        "farge" : "purple", 
+        "subplot_index" : (2, 2, 4)
+    }
+    ]
+
+    plt.figure(figsize=(12, 10))
+    
+    return plot_configuration
 
 
 #Generelle plots
@@ -115,7 +150,7 @@ def forenklet_plot_funksjon(
     if plot_type == "scatter":
         plt.scatter(df[x_col], df[y_col], color = farge, marker = marker)
     else: 
-        plt.plot(df['x_col'], df['y_col'], color = farge, marker=marker, linestyle=linestyle)
+        plt.plot(df[x_col], df[y_col], color = farge, marker=marker, linestyle=linestyle)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.title(title)
