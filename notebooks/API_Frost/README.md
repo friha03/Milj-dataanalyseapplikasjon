@@ -38,9 +38,11 @@ I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir 
 - Ved å strukturere å ta ut feil i CSV filen brukte vi ulike koder, men vi hadde ingen feil
 - Laget egen fil Lage_feil_i_CSV.ipynb har vi lagt inn egne feil og brukt koden i databehandling.ipynb for å vise at den fungerer til å rette opp feilene om vi hadde hatt dem i utgangspunktet
 - Try, except blokker i src filen, som håndterer nettverksfeil, JSON formarteringsfeil eller ugyldige API parametere
-- Enhetstester, der test_verdi_data.py og verdi_data.py tilhører Frost API
+- Enhetstester, der test_verdi_data.py, verdi_data.py og Test_rensing_Frost.py tilhører Frost API
 - test_verdi_data_py tester logikk for uregelmessige hopp i de ulike vær parameterene, og ekstreme tilfeller
 - verdi_data.py er funksjoner som kategoriserer
+- Test_rensing_Frost.py, tester for verdier out of range
+
 
 
 ## Versjonshåndtering og sammerbeid
