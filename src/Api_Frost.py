@@ -6,18 +6,21 @@ import pandas as pd
 
 #sender GET forespørsel til API frost
 def hent_frost_data(endpoint, parameters, client_id):
-    r = requests.get(endpoint, params = parameters, auth=(client_id, None))
-    #sjekker om GET forespørselen er vellykka
-    #200=ok
-    if r.status_code ==200:
-        json_data = r.json() #konverterer til JSON format
-        print("Data hentet fra Frost API")
+
+    try:
+        r = requests.get(endpoint, params = parameters, auth=(client_id, None), timeout=10)
+        r.raise_for_status() #HTTP error viss vi får en status ulik 200
+        json_data = r.json() # forsøk på å dekode JSONet
+        print("Vi har hentet data fra Frost API")
         return json_data
-    else: 
-    #feilmelding og årsak 
-        error_msg = r.json().get("error", {}).get("message", "Ukjent feil")
-        error_reason = r.json().get("error", {}).get("reason", "Ingen grunn spesifert")
-        raise ValueError(f"API-feil: {r.status_code}\nMelding: {error_msg}\nÅrsak: {error_reason}")
+    except requests.exceptions.RequestException as e:
+        print(f"Det oppsto en nettverksfeil når vi skulle hente ut data fra Frost API : {e}")
+        return{} #tomt json blir returnert om vi har feil
+    except ValueError as e:
+        print(f"Klarte ikkje å lesa responsen av JSONet : {e}")
+        return{}
+
+
 
 def frost_json_til_dataframe(json_data):
     #tom liste som lagrer observasjoner

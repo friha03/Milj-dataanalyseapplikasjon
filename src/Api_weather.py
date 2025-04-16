@@ -24,12 +24,26 @@ def hente_data_fra_api(city: str, start_date: datetime, end_date: datetime):
         date_str = current_date.strftime("%Y-%m-%d")
         url = f"{base_URL}/history.json?key={api_key_1}&q={city}&dt={date_str}"
 
-        response = requests.get(url) #HTTP forespørsel
+        #response = requests.get(url) #HTTP forespørsel
 
-        if response.status_code != 200:
-            raise ValueError(f"Feil når vi henter dataen {date_str}: {response.status_code}")
+        #if response.status_code != 200:
+            #raise ValueError(f"Feil når vi henter dataen {date_str}: {response.status_code}")
 
-        data = response.json() #leser JSON som en Python ordbok
+        #data = response.json() #leser JSON som en Python ordbok
+         #Bytter ut koden ovenfor med try except blokker, som håndterer nettverk og JSON feil
+
+        try:
+            response = requests.get(url, timeout = 10)
+            response.raise_for_status() # Får en Error viss statusen er ulik 200
+            data = response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Det er en nettverksfeil som befinner seg på {date_str} : {e}")
+            current_date += timedelta(days=1)
+            continue
+        except ValueError as e:
+            print(f"Det er en feil med JSON fila på {date_str} : {e}")
+            current_date += timedelta(days=1)
+            continue
 
         # Går gjennom hver time i den dagen
         for hour_data in data.get("forecast", {}).get("forecastday", [])[0].get("hour", []):
