@@ -81,3 +81,4 @@ def rense_data(df):
     df["UnormalHoppNedbor"] = df["NedborDiff"].apply(lambda x: "Ja" if abs(x) > 10 else "Nei") #Markerer plutselige endringer
 
     return df
+
