@@ -77,6 +77,8 @@ def tren_og_evaluer_modell(df, temp_col):
     print("MAE:", mean_absolute_error(y_test, y_pred)) 
     print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred))) 
 
+    return model
+
  
 #Predikasjon for 2026
 def prediker_for_aar(model, aar, skuddaar = False):
@@ -87,6 +89,7 @@ def prediker_for_aar(model, aar, skuddaar = False):
 }) 
     #Bruker modellen til å forutsi temperaturene for 2026
     future['predicted_temperature'] = model.predict(future) 
+    
 
     #Visualisering av prediksjonen 
     plt.figure(figsize=(10, 4)) 
@@ -96,3 +99,4 @@ def prediker_for_aar(model, aar, skuddaar = False):
     plt.ylabel("Predikert temperatur (°C)") 
     plt.tight_layout() 
     plt.show()
+
