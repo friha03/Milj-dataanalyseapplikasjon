@@ -100,3 +100,7 @@ def prediker_for_aar(model, aar, skuddaar = False):
     plt.tight_layout() 
     plt.show()
 
+
+
+#Predikasjon
+
