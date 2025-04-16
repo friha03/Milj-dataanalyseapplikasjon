@@ -103,12 +103,17 @@ def forenklet_plot_funksjon(
     y_label,
     title, 
     farge,
-    marker="o", 
-    linestyle="-",
-    xticks_rotation = 45
+    marker = "o", 
+    linestyle = "-",
+    xticks_rotation = 45,
+    plot_type = "line"
 ):
     plt.subplot(*subplot_index)
-    plt.plot(df['x_col'], df['y_col'], farge, marker=marker, linestyle=linestyle)
+
+    if plot_type == "scatter"
+        plt.scatter(df[x_col], df[y_col], color = farge, marker = marker)
+    else: 
+        plt.plot(df['x_col'], df['y_col'], color = farge, marker=marker, linestyle=linestyle)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.title(title)
