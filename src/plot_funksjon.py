@@ -94,6 +94,8 @@ def plott_smart_scatter_3D(
     plt.show()
 
 
+
+#Generelle plots
 def forenklet_plot_funksjon(
     df,
     x_col,
