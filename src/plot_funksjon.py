@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
 
 #2D plots
 def plott_smart_scatter_2D(
@@ -40,9 +42,6 @@ def plott_smart_scatter_2D(
 
 
 #3D plots
-from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd
-
 def plott_smart_scatter_3D(
     df,
     x_col,
