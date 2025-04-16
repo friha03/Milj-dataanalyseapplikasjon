@@ -1,10 +1,10 @@
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import numpy as np
+
 
 def last_og_forbered_data(file_path, temp_col):
     df = pd.read_csv("trondheim_vaerdata_full.csv", parse_dates = ['Tidspunkt'])
@@ -101,13 +101,8 @@ def prediker_for_aar(model, aar, skuddaar = False):
     plt.show()
 
 
-
 #Predikasjon
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-
-def prediker_daglig_variable(
+def predikter_daglig_variabel(
     df,
     variabel,
     label,
@@ -148,5 +143,6 @@ def prediker_daglig_variable(
         plt.show()
 
     return df_pred
+
 
 
