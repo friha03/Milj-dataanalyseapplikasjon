@@ -6,6 +6,7 @@ I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir 
 
 
 ## FUNSKJONALITET
+
 - Importerer nødvendige biblioteker
 - Laster inn API-nøkkel og endepunkt med .env-filen, som sikrer at sensetive opplysninger ikke eksponeres i koden
 - Henter data og lagrer som CSV-fil ved navn trondheim_vaerdata_full.csv. Vi velger værparametrene lufttemperatur, luffttrykk, vindhastighet og nedbør. Vi henter gjennomsnitt per dag. 
@@ -19,22 +20,31 @@ I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir 
 - Lager en predektiv analyse med en lineær regresjon som kan forutsi været i 2026 basert på tidligere data for temperaturer
 - Visualiserer faktiske verdier i forhold til predikerte verdier
 
+
 ## Struktur
+
 - For å gjøre oppgaven mer strukturert og forståelig har vi brukt src filer
-- API_Frost.py tilhører kode som kun ligger i dette API et
+- API_Frost.py tilhører kode som kun ligger i dette API et, som innhenter, renser og konverterer dataen
 - plot_funksjon.py, statisk_maal.py og predikasjon.py tilhører begge APIene
-- plot_funksjoner innholder koden til plottene
+- plot_funksjoner innholder koden til plottene, for både 2D og 3D plots
 - statisk_maal er utregningene på gjennomsnitt, median og standaraavik
 - predektive modeller er funksjoner som bruker lineær regresjon og predikerer været
-- API_Frost.py har vi lagt inn try, except blokker for å sjekke at det ikke er nettverksfeil ved henting av JSON
+- databehandling.ipynb henter data, renser manipulerer den og visuialiserer
+- Lage_feil_i_CSV.ipynb simulerer feil
+
 
 ## Forhindre feil
+
 - Ved å strukturere å ta ut feil i CSV filen brukte vi ulike koder, men vi hadde ingen feil
 - Laget egen fil Lage_feil_i_CSV.ipynb har vi lagt inn egne feil og brukt koden i databehandling.ipynb for å vise at den fungerer til å rette opp feilene om vi hadde hatt dem i utgangspunktet
-- Try, except blokker i src filen
+- Try, except blokker i src filen, som håndterer nettverksfeil, JSON formarteringsfeil eller ugyldige API parametere
 - Enhetstester, der test_verdi_data.py og verdi_data.py tilhører Frost API
+- test_verdi_data_py tester logikk for uregelmessige hopp i de ulike vær parameterene, og ekstreme tilfeller
+- verdi_data.py er funksjoner som kategoriserer
+
 
 ## Versjonshåndtering og sammerbeid
+
 - Bruker Git aktivt, holder da oversikt
 - brancher, og commit meldinger
 - .gitignore sikrer at .env lastes opp
