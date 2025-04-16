@@ -112,7 +112,7 @@ def forenklet_plot_funksjon(
 ):
     plt.subplot(*subplot_index)
 
-    if plot_type == "scatter"
+    if plot_type == "scatter":
         plt.scatter(df[x_col], df[y_col], color = farge, marker = marker)
     else: 
         plt.plot(df['x_col'], df['y_col'], color = farge, marker=marker, linestyle=linestyle)
@@ -120,3 +120,4 @@ def forenklet_plot_funksjon(
     plt.ylabel(y_label)
     plt.title(title)
     plt.xticks(rotation = xticks_rotation)
+
