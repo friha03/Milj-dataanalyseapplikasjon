@@ -1,6 +1,6 @@
 Værdata analyse for Trondheim 2020-2025
 
-# INTRODUSKJON
+## INTRODUSKJON
 
 I denne mappa henter vi inn ulike værdata fra API_Weather fra februar til mars i 2025. Vi behandler deretter dataen, renser den, fjerner feil verdier / verdier out of range, og lager ulike plot. Vi kategoriserer dataen som temperatur, vind, nedbør og trykk. Vi skal se på ulike temperaturer, derav de varmeste dagene, med minst vind og lite nedbør, når det egner seg å bade. I denne filen ser vi på alle lørdager kl 10:00, og sammenligner disse.
 
