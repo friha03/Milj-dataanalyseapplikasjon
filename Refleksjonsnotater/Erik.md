@@ -2,6 +2,9 @@
 Har fått en dypere forståelse på hvordan man kan bruke datainnsamling til ett verktøy for å predikere data for fremtiden og se på når på året det einer seg å bade. Har sett på at datasettene er pålitlige i og med at vi har lagt inn tester for å sjekke om det er urelistiske verider. Jeg har også lært å behandle rådata og strukturere daten, fjerne ekstreme verdier, håndtere manglende verdier gjennom analyse. Vi har brukt ulike plot med Matplotlib for å visulaisere resultat og predikasjon.
 
 
+
+
+
 # Beskrivelse av nye ferdigheter som ble tilegnet, for eksempel bruk av spesifikke biblioteker (Pandas, NumPy, Matplotlib, etc.) og programmeringskonsepter.
 Vi har alle på gruppen hatt c++ og ITGK før. Derfor hadde vi ganske god kjennskap til de ulike bibliotekene. Pandasql var nytt for meg.
 

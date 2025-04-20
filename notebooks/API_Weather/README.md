@@ -2,7 +2,7 @@ Værdata analyse for Trondheim 2020-2025
 
 ## INTRODUSKJON
 
-I denne mappa henter vi inn ulike værdata fra API_Weather fra januar til mars i 2025. Vi behandler deretter dataen, renser den, fjerner feil verdier / verdier out of range, og lager ulike plot. Vi kategoriserer dataen som temperatur, vind, nedbør og trykk. Vi skal se på ulike temperaturer, derav de varmeste dagene, med minst vind og lite nedbør, for å finne ut av når det egner seg å bade. I en av filene lager vi et dataframe der vi henter ut all data for alle lørdager kl 10:00 i den gitte perioden. Så prøver vi å finne ut av hvilke lørdager som har vært sålangt, som har vært best egnet for isbading.
+I denne mappa henter vi inn ulike værdata fra API_Weather fra januar til mars i 2025. Vi behandler deretter dataen, renser den, fjerner feil verdier / verdier out of range, og lager ulike plot. Vi kategoriserer dataen som temperatur, vind, nedbør og trykk. Vi skal se på ulike temperaturer, derav de varmeste dagene, med minst vind og lite nedbør, for å finne ut av når det egner seg å isbade. I en av filene lager vi et dataframe der vi henter ut all data for alle lørdager kl 10:00 i den gitte perioden. Så prøver vi å finne ut av hvilke lørdager som har vært sålangt, som har vært best egnet for isbading.
 
 
 ## FUNSKJONALITET
