@@ -2,7 +2,7 @@ Værdata analyse for Trondheim 2020-2025
 
 ## INTRODUSKJON
 
-I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir ut den daglige gjennosmnitts temperaturen, lufttrykk, nedbør og vind. Vi behandler deretter dataen, renser den, fjerner feil verdier / verdier out of range, og lager ulike plot. Deretter kategoriserer vi dataene som CSV der vi anvender Pandas og pandasql. Vi skal se på ulike temperaturer, derav de varmeste dagene, med minst vind og lite nedbør, når det egner seg å bade. 
+I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir ut den daglige gjennosmnitts temperaturen, lufttrykk, nedbør og vind. Vi behandler deretter dataen, renser den, fjerner feil verdier / verdier out of range, og lager ulike plot. Deretter kategoriserer vi dataene som CSV der vi anvender Pandas og pandasql. Vi skal se på ulike temperaturer, derav de varmeste dagene, med minst vind og lite nedbør, for å finne ut av når det egner seg å bade. 
 
 
 ## FUNSKJONALITET
@@ -16,7 +16,7 @@ I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir 
 - Plot
 - Spørringer med Pandas SQL (sqldf)
 - Kategoriserer værdataen med "Kaldt", "Ekstremvær" osv
-- Deretter henter vi ut de dagene med best bade-vær lite vind, nedbør og varmt, og plotter dette
+- Deretter henter vi ut de dagene med best bade-vær, dvs. lite vind, lite nedbør og varmt, og plotter disse dagene
 - Lager en predektiv analyse med en lineær regresjon som kan forutsi været i 2026 basert på tidligere data for temperaturer
 - Visualiserer faktiske verdier i forhold til predikerte verdier
 
@@ -27,7 +27,7 @@ I denne mappa henter vi inn ulike værdata fra API_frost fra 2020-2025. Den gir 
 - API_Frost.py tilhører kode som kun ligger i dette API et, som innhenter, renser og konverterer dataen
 - plot_funksjon.py, statisk_maal.py og predikasjon.py tilhører begge APIene
 - plot_funksjoner innholder koden til plottene, for både 2D og 3D plots
-- statisk_maal er utregningene på gjennomsnitt, median og standaraavik
+- statisk_maal er utregningene på gjennomsnitt, median og standardavvik
 - predektive modeller er funksjoner som bruker lineær regresjon og predikerer været
 - databehandling.ipynb henter data, renser manipulerer den og visuialiserer
 - Lage_feil_i_CSV.ipynb simulerer feil
