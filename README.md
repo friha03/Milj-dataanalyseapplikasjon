@@ -22,8 +22,7 @@ I Dataanalyse_visualiseringer filtreres data til å inneholde data fra lørdager
 ### Databehandling av Weather_API
 Databehandling_av_Weather_API strukturerer og behandler dataten, henter data fra CSV, sammenligner med Pandasql, og behandler nan-verdier. 
 
-### Prediktiv analyse for Weather_API
-Prediktiv_analyse_for_Westher_API predikterer data for fremtiden med regresjon og trening. 
+
 
 
 ## Source
